@@ -140,8 +140,6 @@ const getAllProperties = function (options, limit = 10) {
   }
   // If user input minimum rating
   if (options.minimum_rating) {
-    // options.minimum_rating = Number(options.minimum_rating);
-    // console.log(typeof options.minimum_rating);
     queryParams.push(`${options.minimum_rating}`);
     queryString += `AND property_reviews.rating >= $${queryParams.length} `;
   }
@@ -203,7 +201,6 @@ const addProperty = function (property) {
     property.number_of_bedrooms,
   ];
 
-  console.log("query:", queryString, "para:", queryParams);
   return pool
     .query(queryString, queryParams)
     .then((data) => data.rows)
