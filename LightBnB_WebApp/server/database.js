@@ -131,6 +131,12 @@ const getAllProperties = function (options, limit = 10) {
     queryParams.push(`%${options.city}%`);
     queryString += `AND city LIKE $${queryParams.length} `;
   }
+  // If user user_id valid
+  if (options.owner_id) {
+    queryParams.push(`%${options.owner_id}%`);
+    queryString += `AND properties.owner_id LIKE $${queryParams.length} `;
+  }
+
   // If user input minimum abd maximum
   if (options.minimum_price_per_night && options.maximum_price_per_night) {
     queryParams.push(`${options.minimum_price_per_night}00`);
